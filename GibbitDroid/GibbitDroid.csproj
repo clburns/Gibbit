@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\StarredRepoListAdapter.cs" />
-    <Compile Include="Helpers\FetchHelper.cs" />
     <Compile Include="Helpers\FileAccessHelper.cs" />
     <Compile Include="Helpers\GetImageHelper.cs" />
     <Compile Include="Helpers\GetLocalStorage.cs" />
