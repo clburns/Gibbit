@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:actionBarNavMode="list">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/Greeting"
+            android:text="Please Sign In"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:paddingTop="12dip"
+            android:paddingLeft="16dip"
+            android:textSize="20dip"
+            android:layout_weight="1" />
+        <ImageView
+            android:id="@+id/UserAvatar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:paddingTop="4dip"
+            android:layout_weight="0.2" />
+    </LinearLayout>
+    <Button
+        android:text="Sign In"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SignIn"
+        android:enabled="true" />
+    <Button
+        android:text="Get Starred Repos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GetStarred"
+        android:enabled="false" />
+    <ListView
+        android:id="@+id/StarredRepoList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
