@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 
-namespace Gibbit.Core
+namespace Gibbit.Core.Models
 {
     public class User
     {
@@ -10,7 +10,9 @@ namespace Gibbit.Core
 
         [JsonProperty("avatar_url")]
         public string avatarUrl { get; set; }
-        public string AccessToken { get; set; }
+
+        public Token AccessToken { get; set; }
+
         public bool IsAuthenticated { get; set; }
     }
 }

@@ -79,12 +79,15 @@
     <Compile Include="Helpers\FetchHelper.cs" />
     <Compile Include="Helpers\FileAccessHelper.cs" />
     <Compile Include="Helpers\GetImageHelper.cs" />
+    <Compile Include="Helpers\GetLocalStorage.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activites\MainActivity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeFile1.json" />
+    <AndroidAsset Include="Assets\LocalStorage.txt">
+      <SubType>AndroidResource</SubType>
+    </AndroidAsset>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="packages.config" />
@@ -136,4 +139,5 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_star_white_24dp.png" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

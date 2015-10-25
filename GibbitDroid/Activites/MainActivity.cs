@@ -2,7 +2,6 @@
 using Android.OS;
 using Android.Widget;
 
-using Gibbit.Core;
 using Gibbit.Core.Managers;
 using Gibbit.Core.Models;
 using GibbitDroid.Helpers;
@@ -16,9 +15,10 @@ namespace GibbitDroid
 	public class MainActivity : Activity
 	{
         private readonly FetchHelper _fetch;
-        private readonly string accessToken = "";
-        private readonly string tokenAppName = "Gibbit";
+        private string tokenAppName;
+        private string accessToken;
         public User User;
+        public Activity context;
         public List<string> starredRepoList = new List<string>();
 
         public MainActivity()
@@ -26,7 +26,7 @@ namespace GibbitDroid
             _fetch = new FetchHelper();
         }
 
-        protected override void OnCreate(Bundle bundle)
+        protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -37,6 +37,10 @@ namespace GibbitDroid
             Button getStarred = FindViewById<Button>(Resource.Id.GetStarred);
             TextView greeting = FindViewById<TextView>(Resource.Id.Greeting);
             ListView starredRepoListView = FindViewById<ListView>(Resource.Id.StarredRepoList);
+
+            var token = await GetLocalStorage.GetLocalAccessToken(context);
+            accessToken = string.Format("{0}", token.AccessToken);
+            tokenAppName = string.Format("{0}", token.AppName);
 
             signIn.Click += async (sender, e) =>
             {
