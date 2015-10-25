@@ -12,7 +12,7 @@ namespace Gibbit.Core.Models
         [JsonProperty("access_token")]
         public string AccessToken { get; set; }
 
-        [JsonProperty("app_name")]
-        public string AppName { get; set; }
+        [JsonProperty("token_description")]
+        public string TokenDescription { get; set; }
     }
 }

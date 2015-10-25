@@ -15,7 +15,7 @@ namespace GibbitDroid
 	public class MainActivity : Activity
 	{
         private readonly FetchHelper _fetch;
-        private string tokenAppName;
+        private string tokenDescription;
         private string accessToken;
         public User User;
         public Activity context;
@@ -40,12 +40,12 @@ namespace GibbitDroid
 
             var token = await GetLocalStorage.GetLocalAccessToken(context);
             accessToken = string.Format("{0}", token.AccessToken);
-            tokenAppName = string.Format("{0}", token.AppName);
+            tokenDescription = string.Format("{0}", token.TokenDescription);
 
             signIn.Click += async (sender, e) =>
             {
                 var url = "https://api.github.com/user";
-                var json = await _fetch.FetchJson(url, accessToken, tokenAppName);
+                var json = await _fetch.FetchJson(url, accessToken, tokenDescription);
                 var user = await ParseManager.Parse<User>(json);
 
                 User = user;
@@ -64,7 +64,7 @@ namespace GibbitDroid
                 var url = "https://api.github.com/users/" +
                             User.UserName +
                             "/starred";
-                var json = await _fetch.FetchJson(url, accessToken, tokenAppName);
+                var json = await _fetch.FetchJson(url, accessToken, tokenDescription);
                 var repos = await ParseManager.Parse<List<Repo>>(json);
 
                 starredRepoListView.Adapter = new StarredRepoListAdapter(this, repos);
