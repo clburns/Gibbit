@@ -1162,26 +1162,29 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b004e
 			public const int Greeting = 2131427406;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int Line1 = 2131427418;
-			
 			// aapt resource value: 0x7f0b005b
-			public const int Line2 = 2131427419;
+			public const int Line1 = 2131427419;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int OwnerAvatar = 2131427416;
+			// aapt resource value: 0x7f0b005c
+			public const int Line2 = 2131427420;
+			
+			// aapt resource value: 0x7f0b0059
+			public const int OwnerAvatar = 2131427417;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int SignIn = 2131427408;
 			
-			// aapt resource value: 0x7f0b005c
-			public const int StarButton = 2131427420;
+			// aapt resource value: 0x7f0b005d
+			public const int StarButton = 2131427421;
 			
 			// aapt resource value: 0x7f0b0052
 			public const int StarredRepoList = 2131427410;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int Text = 2131427417;
+			// aapt resource value: 0x7f0b005a
+			public const int Text = 2131427418;
+			
+			// aapt resource value: 0x7f0b0058
+			public const int Text1 = 2131427416;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int UserAvatar = 2131427407;
@@ -1552,10 +1555,13 @@ namespace GibbitDroid
 			public const int mr_media_route_list_item = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int StarredRepoList = 2130903068;
+			public const int Repo = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int support_simple_spinner_dropdown_item = 2130903069;
+			public const int StarredRepoList = 2130903069;
+			
+			// aapt resource value: 0x7f03001e
+			public const int support_simple_spinner_dropdown_item = 2130903070;
 			
 			static Layout()
 			{

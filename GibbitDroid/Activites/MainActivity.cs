@@ -1,8 +1,10 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Gibbit.Core.Managers;
 using Gibbit.Core.Models;
+using GibbitDroid.Activites;
 using GibbitDroid.Adapters;
 using GibbitDroid.Helpers;
 using System.Collections.Generic;
@@ -12,13 +14,14 @@ namespace GibbitDroid
     [Activity (Label = "Gibbit", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-        public FetchManager _fetch;
+        private readonly FetchManager _fetch;
         public Token token;
         public User user;
         public Activity context;
         public List<string> starredRepoList = new List<string>();
         public List<Repo> repos;
         public ListView starredRepoListView;
+        public static Repo repo;
 
         public MainActivity()
         {
@@ -66,9 +69,16 @@ namespace GibbitDroid
 
                 starredRepoListView.Adapter = new StarredRepoListAdapter(this, token, user, repos);
             };
+
+            starredRepoListView.ItemClick += (sender, e) =>
+            {
+                var listView = sender as ListView;
+                repo = repos[e.Position];
+                //Toast.MakeText(this, string.Format("The Id for this repo is: {0}", repo.Id), ToastLength.Short).Show();
+                var intent = new Intent(this, typeof(RepoActivity));
+                StartActivity(intent);
+            };
 		}
-
-
     }
 }
 

@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activites\RepoActivity.cs" />
     <Compile Include="Adapters\StarredRepoListAdapter.cs" />
     <Compile Include="Helpers\GetImageHelper.cs" />
     <Compile Include="Helpers\GetLocalStorage.cs" />
@@ -90,6 +91,9 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\StarredRepoList.axml" />
+    <AndroidResource Include="Resources\layout\Repo.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
