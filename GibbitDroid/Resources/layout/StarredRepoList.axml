@@ -8,7 +8,7 @@
         android:id="@+id/OwnerAvatar"
         android:layout_width="42dp"
         android:layout_height="42dp"
-        android:paddingTop="5dp"
+        android:paddingTop="3dp"
         android:src="@drawable/icon"
         android:layout_alignParentLeft="true" />
     <LinearLayout
@@ -35,7 +35,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="11dp"
+        android:paddingTop="10dp"
         android:paddingRight="3dp"
         android:id="@+id/StarButton"
         android:src="@drawable/ic_star_white_24dp"

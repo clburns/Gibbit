@@ -12,11 +12,13 @@ namespace GibbitDroid
     [Activity (Label = "Gibbit", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-        private readonly FetchManager _fetch;
-        private Token token;
-        public User User;
+        public FetchManager _fetch;
+        public Token token;
+        public User user;
         public Activity context;
         public List<string> starredRepoList = new List<string>();
+        public List<Repo> repos;
+        public ListView starredRepoListView;
 
         public MainActivity()
         {
@@ -33,7 +35,7 @@ namespace GibbitDroid
             ImageView userAvatar = FindViewById<ImageView>(Resource.Id.UserAvatar);
             Button getStarred = FindViewById<Button>(Resource.Id.GetStarred);
             TextView greeting = FindViewById<TextView>(Resource.Id.Greeting);
-            ListView starredRepoListView = FindViewById<ListView>(Resource.Id.StarredRepoList);
+            starredRepoListView = FindViewById<ListView>(Resource.Id.StarredRepoList);
 
             token = await GetLocalStorage.GetLocalAccessToken(context);
 
@@ -41,9 +43,7 @@ namespace GibbitDroid
             {
                 var url = "https://api.github.com/user";
                 var json = await _fetch.GetJson(url, token);
-                var user = await ParseManager.Parse<User>(json);
-
-                User = user;
+                user = await ParseManager.Parse<User>(json);
 
                 if (user != null)
                 {
@@ -58,15 +58,18 @@ namespace GibbitDroid
             getStarred.Click += async (sender, e) =>
             {
                 var url = "https://api.github.com/users/" +
-                            User.UserName +
-                            "/starred";
-                var json = await _fetch.GetJson(url, token);
-                var repos = await ParseManager.Parse<List<Repo>>(json);
+                user.UserName +
+                "/starred";
 
-                starredRepoListView.Adapter = new StarredRepoListAdapter(this, repos);
+                var json = await _fetch.GetJson(url, token);
+                repos = await ParseManager.Parse<List<Repo>>(json);
+
+                starredRepoListView.Adapter = new StarredRepoListAdapter(this, token, user, repos);
             };
 		}
-	}
+
+
+    }
 }
 
 

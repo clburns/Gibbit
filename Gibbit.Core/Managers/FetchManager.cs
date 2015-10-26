@@ -26,5 +26,24 @@ namespace Gibbit.Core.Managers
                 }
             }
         }
+
+        public async Task<string> DeleteJson(string url, Token token)
+        {
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+            client.DefaultRequestHeaders.Add("User-Agent", string.Format("{0}", token.TokenDescription));
+            client.DefaultRequestHeaders.Add("Authorization", string.Format("Token {0}", token.AccessToken));
+
+            using (HttpResponseMessage response = await client.DeleteAsync(new Uri(url)))
+            {
+                var stream = await response.Content.ReadAsStreamAsync();
+                using (var sr = new StreamReader(stream))
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    return res;
+                }
+            }
+        }
     }
 }

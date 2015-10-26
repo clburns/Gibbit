@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 using Gibbit.Core.Models;
 using GibbitDroid.Helpers;
+using Gibbit.Core.Managers;
+using System.Threading.Tasks;
 
 namespace GibbitDroid.Adapters
 {
@@ -18,14 +20,22 @@ namespace GibbitDroid.Adapters
 
     public class StarredRepoListAdapter : BaseAdapter<Repo>
     {
-        List<Repo> repos;
-        Activity context;
+        private Token token;
+        private User user;
+        private List<Repo> repos;
+        private Activity context;
+        private FetchManager _fetch;
+        
 
-        public StarredRepoListAdapter(Activity context, List<Repo> repos) : base()
-            {
-                this.context = context;
-                this.repos = repos;
-            }
+        public StarredRepoListAdapter(Activity context, Token token, User user, List<Repo> repos) : base()
+        {
+            this.context = context;
+            this.user = user;
+            this.token = token;
+            this.repos = repos;
+
+            _fetch = new FetchManager();
+        }
 
         public override long GetItemId(int position)
         {
@@ -48,10 +58,13 @@ namespace GibbitDroid.Adapters
             View view = convertView;
             if (view == null)
             {
+                 
                 view = context.LayoutInflater.Inflate(Resource.Layout.StarredRepoList, null);
                 view.FindViewById<ImageView>(Resource.Id.StarButton).Click += (sender, e) =>
                 {
-                    Toast.MakeText(this.context, string.Format("Unstar the {0} repository", repo.Name), ToastLength.Short).Show();
+                    StarbuttonClick(sender, e, repo);
+                    repos.RemoveAt(position);
+                    this.NotifyDataSetChanged();
                 };
             }
             view.FindViewById<TextView>(Resource.Id.Line1).Text = string.Format("{0} - {1}", repo.Owner.Name, repo.Name);
@@ -60,9 +73,14 @@ namespace GibbitDroid.Adapters
             return view;
         }
 
-        //void starButtonClick(object sender, AdapterView.ItemClickEventArgs e)
-        //{
-        //    Toast.MakeText(this.context, string.Format("Unstar the {0} repository"), ToastLength.Short).Show();
-        //}
+        private async void StarbuttonClick(object sender, EventArgs e, Repo repo)
+        {
+            var url = "https://api.github.com/user/starred/" +
+                        user.UserName +
+                        "/" +
+                        repo.Name;
+            await _fetch.DeleteJson(url, token);
+            Toast.MakeText(context, string.Format("Unstar the {0} repository", repo.Name), ToastLength.Short).Show();
+        }
     }
 }
