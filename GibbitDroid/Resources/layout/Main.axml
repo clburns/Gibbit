@@ -20,10 +20,11 @@
             android:layout_weight="1" />
         <ImageView
             android:id="@+id/UserAvatar"
-            android:layout_width="0dp"
+            android:layout_width="48dp"
             android:layout_height="48dp"
-            android:paddingTop="4dip"
-            android:layout_weight="0.2" />
+            android:paddingTop="7dp"
+            android:paddingLeft="10dp"
+            android:layout_weight="0.1" />
     </LinearLayout>
     <Button
         android:text="Sign In"
@@ -40,5 +41,6 @@
     <ListView
         android:id="@+id/StarredRepoList"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:dividerHeight="1.0dp" />
 </LinearLayout>

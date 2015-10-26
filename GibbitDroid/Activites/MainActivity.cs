@@ -51,6 +51,7 @@ namespace GibbitDroid
                     var bitmap = GetImageHelper.GetImageBitmapFromUrl(string.Format("{0}", user.avatarUrl));
                     userAvatar.SetImageBitmap(bitmap);
                     getStarred.Enabled = true;
+                    signIn.Visibility = Android.Views.ViewStates.Gone;
                 }
             };
 
