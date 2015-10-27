@@ -15,7 +15,7 @@ namespace GibbitDroid
 	public class MainActivity : Activity
 	{
         private readonly FetchManager _fetch;
-        public Token token;
+        public static Token token;
         public User user;
         public Activity context;
         public List<string> starredRepoList = new List<string>();

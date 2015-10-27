@@ -7,10 +7,19 @@
     tools:actionBarNavMode="list">
     <TextView
         android:id="@+id/RepoName"
-        android:text="Text1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:textSize="20dip" />
+    <TextView
+        android:id="@+id/Readme"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:maxLines="10"
+        android:minLines="3"
+        android:padding="5dp"
+        android:textSize="14dip" />
     <ListView
         android:id="@+id/CommitList"
         android:layout_width="fill_parent"

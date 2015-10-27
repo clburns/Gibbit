@@ -47,6 +47,8 @@ namespace GibbitDroid.Adapters
             if (view == null)
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.CommitList, null);
+
+                //TODO: make this menu actually do something.
                 view.FindViewById<ImageView>(Resource.Id.EllipsesButton).Click += (sender, e) =>
                 {
                     PopupMenu menu = new PopupMenu(Application.Context, view, GravityFlags.Right);

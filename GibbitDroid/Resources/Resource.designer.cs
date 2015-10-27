@@ -1159,17 +1159,17 @@ namespace GibbitDroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0062
-			public const int Comment = 2131427426;
+			// aapt resource value: 0x7f0b0063
+			public const int Comment = 2131427427;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int CommitList = 2131427421;
+			// aapt resource value: 0x7f0b005e
+			public const int CommitList = 2131427422;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int Commiter = 2131427407;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int Compare = 2131427427;
+			// aapt resource value: 0x7f0b0064
+			public const int Compare = 2131427428;
 			
 			// aapt resource value: 0x7f0b0051
 			public const int EllipsesButton = 2131427409;
@@ -1180,17 +1180,20 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b0052
 			public const int Greeting = 2131427410;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int Line1 = 2131427423;
-			
 			// aapt resource value: 0x7f0b0060
-			public const int Line2 = 2131427424;
+			public const int Line1 = 2131427424;
+			
+			// aapt resource value: 0x7f0b0061
+			public const int Line2 = 2131427425;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int Message = 2131427408;
 			
-			// aapt resource value: 0x7f0b005e
-			public const int OwnerAvatar = 2131427422;
+			// aapt resource value: 0x7f0b005f
+			public const int OwnerAvatar = 2131427423;
+			
+			// aapt resource value: 0x7f0b005d
+			public const int Readme = 2131427421;
 			
 			// aapt resource value: 0x7f0b005c
 			public const int RepoName = 2131427420;
@@ -1198,8 +1201,8 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b0054
 			public const int SignIn = 2131427412;
 			
-			// aapt resource value: 0x7f0b0061
-			public const int StarButton = 2131427425;
+			// aapt resource value: 0x7f0b0062
+			public const int StarButton = 2131427426;
 			
 			// aapt resource value: 0x7f0b0056
 			public const int StarredRepoList = 2131427414;
