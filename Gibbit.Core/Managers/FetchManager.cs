@@ -18,12 +18,8 @@ namespace Gibbit.Core.Managers
 
             using (HttpResponseMessage response = await client.GetAsync(new Uri(url)))
             {
-                var stream = await response.Content.ReadAsStreamAsync();
-                using (var sr = new StreamReader(stream))
-                {
-                    string res = await response.Content.ReadAsStringAsync();
-                    return res;
-                }
+                string res = await response.Content.ReadAsStringAsync();
+                return res;
             }
         }
 
@@ -37,12 +33,8 @@ namespace Gibbit.Core.Managers
 
             using (HttpResponseMessage response = await client.DeleteAsync(new Uri(url)))
             {
-                var stream = await response.Content.ReadAsStreamAsync();
-                using (var sr = new StreamReader(stream))
-                {
-                    string res = await response.Content.ReadAsStringAsync();
-                    return res;
-                }
+                string res = await response.Content.ReadAsStringAsync();
+                return res;
             }
         }
     }
