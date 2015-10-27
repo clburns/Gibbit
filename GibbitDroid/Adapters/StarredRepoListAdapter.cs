@@ -25,7 +25,6 @@ namespace GibbitDroid.Adapters
         private List<Repo> repos;
         private Activity context;
         private FetchManager _fetch;
-        
 
         public StarredRepoListAdapter(Activity context, Token token, User user, List<Repo> repos) : base()
         {
@@ -58,7 +57,6 @@ namespace GibbitDroid.Adapters
             View view = convertView;
             if (view == null)
             {
-                 
                 view = context.LayoutInflater.Inflate(Resource.Layout.StarredRepoList, null);
                 view.FindViewById<ImageView>(Resource.Id.StarButton).Click += (sender, e) =>
                 {

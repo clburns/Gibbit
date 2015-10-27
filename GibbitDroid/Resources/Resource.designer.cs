@@ -1156,38 +1156,47 @@ namespace GibbitDroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0051
-			public const int GetStarred = 2131427409;
-			
-			// aapt resource value: 0x7f0b004e
-			public const int Greeting = 2131427406;
-			
-			// aapt resource value: 0x7f0b005b
-			public const int Line1 = 2131427419;
-			
 			// aapt resource value: 0x7f0b005c
-			public const int Line2 = 2131427420;
-			
-			// aapt resource value: 0x7f0b0059
-			public const int OwnerAvatar = 2131427417;
-			
-			// aapt resource value: 0x7f0b0050
-			public const int SignIn = 2131427408;
-			
-			// aapt resource value: 0x7f0b005d
-			public const int StarButton = 2131427421;
-			
-			// aapt resource value: 0x7f0b0052
-			public const int StarredRepoList = 2131427410;
-			
-			// aapt resource value: 0x7f0b005a
-			public const int Text = 2131427418;
-			
-			// aapt resource value: 0x7f0b0058
-			public const int Text1 = 2131427416;
+			public const int CommitList = 2131427420;
 			
 			// aapt resource value: 0x7f0b004f
-			public const int UserAvatar = 2131427407;
+			public const int Commiter = 2131427407;
+			
+			// aapt resource value: 0x7f0b0054
+			public const int GetStarred = 2131427412;
+			
+			// aapt resource value: 0x7f0b0051
+			public const int Greeting = 2131427409;
+			
+			// aapt resource value: 0x7f0b005e
+			public const int Line1 = 2131427422;
+			
+			// aapt resource value: 0x7f0b005f
+			public const int Line2 = 2131427423;
+			
+			// aapt resource value: 0x7f0b0050
+			public const int Message = 2131427408;
+			
+			// aapt resource value: 0x7f0b005d
+			public const int OwnerAvatar = 2131427421;
+			
+			// aapt resource value: 0x7f0b005b
+			public const int RepoName = 2131427419;
+			
+			// aapt resource value: 0x7f0b0053
+			public const int SignIn = 2131427411;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int StarButton = 2131427424;
+			
+			// aapt resource value: 0x7f0b0055
+			public const int StarredRepoList = 2131427413;
+			
+			// aapt resource value: 0x7f0b004e
+			public const int Text = 2131427406;
+			
+			// aapt resource value: 0x7f0b0052
+			public const int UserAvatar = 2131427410;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int action_bar = 2131427374;
@@ -1312,20 +1321,20 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b0024
 			public const int match_parent = 2131427364;
 			
+			// aapt resource value: 0x7f0b0059
+			public const int media_route_control_frame = 2131427417;
+			
+			// aapt resource value: 0x7f0b005a
+			public const int media_route_disconnect_button = 2131427418;
+			
 			// aapt resource value: 0x7f0b0056
-			public const int media_route_control_frame = 2131427414;
+			public const int media_route_list = 2131427414;
 			
 			// aapt resource value: 0x7f0b0057
-			public const int media_route_disconnect_button = 2131427415;
+			public const int media_route_volume_layout = 2131427415;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int media_route_list = 2131427411;
-			
-			// aapt resource value: 0x7f0b0054
-			public const int media_route_volume_layout = 2131427412;
-			
-			// aapt resource value: 0x7f0b0055
-			public const int media_route_volume_slider = 2131427413;
+			// aapt resource value: 0x7f0b0058
+			public const int media_route_volume_slider = 2131427416;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int middle = 2131427352;
@@ -1543,25 +1552,28 @@ namespace GibbitDroid
 			public const int abc_simple_decor = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int Main = 2130903064;
+			public const int CommitList = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int mr_media_route_chooser_dialog = 2130903065;
+			public const int Main = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int mr_media_route_controller_dialog = 2130903066;
+			public const int mr_media_route_chooser_dialog = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
-			public const int mr_media_route_list_item = 2130903067;
+			public const int mr_media_route_controller_dialog = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int Repo = 2130903068;
+			public const int mr_media_route_list_item = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int StarredRepoList = 2130903069;
+			public const int Repo = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int support_simple_spinner_dropdown_item = 2130903070;
+			public const int StarredRepoList = 2130903070;
+			
+			// aapt resource value: 0x7f03001f
+			public const int support_simple_spinner_dropdown_item = 2130903071;
 			
 			static Layout()
 			{

@@ -74,7 +74,6 @@ namespace GibbitDroid
             {
                 var listView = sender as ListView;
                 repo = repos[e.Position];
-                //Toast.MakeText(this, string.Format("The Id for this repo is: {0}", repo.Id), ToastLength.Short).Show();
                 var intent = new Intent(this, typeof(RepoActivity));
                 StartActivity(intent);
             };

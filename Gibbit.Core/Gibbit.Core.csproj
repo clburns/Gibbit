@@ -32,6 +32,9 @@
   <ItemGroup>
     <Compile Include="Managers\FetchManager.cs" />
     <Compile Include="Models\AccessToken.cs" />
+    <Compile Include="Models\Commit.cs" />
+    <Compile Include="Models\CommitCommitter.cs" />
+    <Compile Include="Models\CommitRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\ParseManager.cs" />
     <Compile Include="Models\Owner.cs" />
