@@ -60,9 +60,8 @@ namespace GibbitDroid
 
             getStarred.Click += async (sender, e) =>
             {
-                var url = "https://api.github.com/users/" +
-                user.UserName +
-                "/starred";
+                var url = user.Url +
+                          "/starred";
 
                 var json = await _fetch.GetJson(url, token);
                 repos = await ParseManager.Parse<List<Repo>>(json);

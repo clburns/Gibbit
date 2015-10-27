@@ -14,6 +14,7 @@ namespace GibbitDroid.Activites
     public class RepoActivity : MainActivity
     {
         private readonly FetchManager _fetch;
+        public List<CommitRepo> commits;
 
         public RepoActivity()
         {
@@ -30,16 +31,14 @@ namespace GibbitDroid.Activites
 
             repoName.Text = string.Format("{0}", repo.Name);
 
-            var url = "https://api.github.com/repos/" +
-                repo.Owner.Name +
-                "/" +
-                repo.Name +
-                "/commits";
+            var url = repo.Url +
+                      "/commits"; 
 
             var json = await _fetch.GetJson(url, token);
-            var commits = await ParseManager.Parse<List<CommitRepo>>(json);
+            commits = await ParseManager.Parse<List<CommitRepo>>(json);
 
             commitList.Adapter = new CommitListAdapter(this, commits);
+
         }
     }
 }

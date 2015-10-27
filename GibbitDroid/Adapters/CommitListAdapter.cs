@@ -47,6 +47,18 @@ namespace GibbitDroid.Adapters
             if (view == null)
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.CommitList, null);
+                view.FindViewById<ImageView>(Resource.Id.EllipsesButton).Click += (sender, e) =>
+                {
+                    PopupMenu menu = new PopupMenu(Application.Context, view, GravityFlags.Right);
+                    menu.Inflate(Resource.Menu.CommitMenu);
+
+                    menu.MenuItemClick += (sender1, e1) =>
+                    {
+                        Console.WriteLine("{0} selected", e1.Item.TitleFormatted);
+                    };
+
+                    menu.Show();
+                };
             }
             view.FindViewById<TextView>(Resource.Id.Message).Text = string.Format("{0}", commit.Commit.Message);
             view.FindViewById<TextView>(Resource.Id.Commiter).Text = string.Format("{0} commited on {1}", commit.Commit.Committer.Name, commit.Commit.Committer.Date.ToLocalTime());

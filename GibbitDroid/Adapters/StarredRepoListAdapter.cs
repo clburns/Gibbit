@@ -60,7 +60,7 @@ namespace GibbitDroid.Adapters
                 view = context.LayoutInflater.Inflate(Resource.Layout.StarredRepoList, null);
                 view.FindViewById<ImageView>(Resource.Id.StarButton).Click += (sender, e) =>
                 {
-                    StarbuttonClick(sender, e, repo);
+                    StarClick(sender, e, repo);
                     repos.RemoveAt(position);
                     this.NotifyDataSetChanged();
                 };
@@ -71,7 +71,7 @@ namespace GibbitDroid.Adapters
             return view;
         }
 
-        private async void StarbuttonClick(object sender, EventArgs e, Repo repo)
+        private async void StarClick(object sender, EventArgs e, Repo repo)
         {
             var url = "https://api.github.com/user/starred/" +
                         user.UserName +

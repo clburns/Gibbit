@@ -17,11 +17,21 @@
             android:textSize="14dip"
             android:textColor="#FFCCCCCC" />
         <TextView
-            android:text="Commit Message"
+            android:text="Commit Message that is decently long to see how it looks"
             android:id="@+id/Message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFFFF"
+            android:paddingRight="24dp"
             android:textSize="20dip" />
     </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingRight="3dp"
+        android:id="@+id/EllipsesButton"
+        android:src="@drawable/ic_more_vert_white_24dp"
+        android:clickable="true"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

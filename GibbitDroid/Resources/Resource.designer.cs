@@ -1063,85 +1063,88 @@ namespace GibbitDroid
 			public const int common_signin_btn_text_pressed_light = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_plusone_medium_off_client = 2130837615;
+			public const int ic_more_vert_white_24dp = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_plusone_small_off_client = 2130837616;
+			public const int ic_plusone_medium_off_client = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_plusone_standard_off_client = 2130837617;
+			public const int ic_plusone_small_off_client = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_plusone_tall_off_client = 2130837618;
+			public const int ic_plusone_standard_off_client = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_star_border_white_24dp = 2130837619;
+			public const int ic_plusone_tall_off_client = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_star_white_24dp = 2130837620;
+			public const int ic_star_border_white_24dp = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int Icon = 2130837621;
+			public const int ic_star_white_24dp = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int monoandroidsplash = 2130837622;
+			public const int Icon = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int mr_ic_audio_vol = 2130837623;
+			public const int monoandroidsplash = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int mr_ic_media_route_connecting_holo_dark = 2130837624;
+			public const int mr_ic_audio_vol = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int mr_ic_media_route_connecting_holo_light = 2130837625;
+			public const int mr_ic_media_route_connecting_holo_dark = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int mr_ic_media_route_disabled_holo_dark = 2130837626;
+			public const int mr_ic_media_route_connecting_holo_light = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int mr_ic_media_route_disabled_holo_light = 2130837627;
+			public const int mr_ic_media_route_disabled_holo_dark = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int mr_ic_media_route_holo_dark = 2130837628;
+			public const int mr_ic_media_route_disabled_holo_light = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int mr_ic_media_route_holo_light = 2130837629;
+			public const int mr_ic_media_route_holo_dark = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int mr_ic_media_route_off_holo_dark = 2130837630;
+			public const int mr_ic_media_route_holo_light = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int mr_ic_media_route_off_holo_light = 2130837631;
+			public const int mr_ic_media_route_off_holo_dark = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int mr_ic_media_route_on_0_holo_dark = 2130837632;
+			public const int mr_ic_media_route_off_holo_light = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int mr_ic_media_route_on_0_holo_light = 2130837633;
+			public const int mr_ic_media_route_on_0_holo_dark = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int mr_ic_media_route_on_1_holo_dark = 2130837634;
+			public const int mr_ic_media_route_on_0_holo_light = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int mr_ic_media_route_on_1_holo_light = 2130837635;
+			public const int mr_ic_media_route_on_1_holo_dark = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int mr_ic_media_route_on_2_holo_dark = 2130837636;
+			public const int mr_ic_media_route_on_1_holo_light = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int mr_ic_media_route_on_2_holo_light = 2130837637;
+			public const int mr_ic_media_route_on_2_holo_dark = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int mr_ic_media_route_on_holo_dark = 2130837638;
+			public const int mr_ic_media_route_on_2_holo_light = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int mr_ic_media_route_on_holo_light = 2130837639;
+			public const int mr_ic_media_route_on_holo_dark = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int powered_by_google_dark = 2130837640;
+			public const int mr_ic_media_route_on_holo_light = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int powered_by_google_light = 2130837641;
+			public const int powered_by_google_dark = 2130837641;
+			
+			// aapt resource value: 0x7f02008a
+			public const int powered_by_google_light = 2130837642;
 			
 			static Drawable()
 			{
@@ -1156,47 +1159,56 @@ namespace GibbitDroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b005c
-			public const int CommitList = 2131427420;
+			// aapt resource value: 0x7f0b0062
+			public const int Comment = 2131427426;
+			
+			// aapt resource value: 0x7f0b005d
+			public const int CommitList = 2131427421;
 			
 			// aapt resource value: 0x7f0b004f
 			public const int Commiter = 2131427407;
 			
-			// aapt resource value: 0x7f0b0054
-			public const int GetStarred = 2131427412;
+			// aapt resource value: 0x7f0b0063
+			public const int Compare = 2131427427;
 			
 			// aapt resource value: 0x7f0b0051
-			public const int Greeting = 2131427409;
+			public const int EllipsesButton = 2131427409;
 			
-			// aapt resource value: 0x7f0b005e
-			public const int Line1 = 2131427422;
+			// aapt resource value: 0x7f0b0055
+			public const int GetStarred = 2131427413;
+			
+			// aapt resource value: 0x7f0b0052
+			public const int Greeting = 2131427410;
 			
 			// aapt resource value: 0x7f0b005f
-			public const int Line2 = 2131427423;
+			public const int Line1 = 2131427423;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int Line2 = 2131427424;
 			
 			// aapt resource value: 0x7f0b0050
 			public const int Message = 2131427408;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int OwnerAvatar = 2131427421;
+			// aapt resource value: 0x7f0b005e
+			public const int OwnerAvatar = 2131427422;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int RepoName = 2131427419;
+			// aapt resource value: 0x7f0b005c
+			public const int RepoName = 2131427420;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int SignIn = 2131427411;
+			// aapt resource value: 0x7f0b0054
+			public const int SignIn = 2131427412;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int StarButton = 2131427424;
+			// aapt resource value: 0x7f0b0061
+			public const int StarButton = 2131427425;
 			
-			// aapt resource value: 0x7f0b0055
-			public const int StarredRepoList = 2131427413;
+			// aapt resource value: 0x7f0b0056
+			public const int StarredRepoList = 2131427414;
 			
 			// aapt resource value: 0x7f0b004e
 			public const int Text = 2131427406;
 			
-			// aapt resource value: 0x7f0b0052
-			public const int UserAvatar = 2131427410;
+			// aapt resource value: 0x7f0b0053
+			public const int UserAvatar = 2131427411;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int action_bar = 2131427374;
@@ -1321,20 +1333,20 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b0024
 			public const int match_parent = 2131427364;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int media_route_control_frame = 2131427417;
-			
 			// aapt resource value: 0x7f0b005a
-			public const int media_route_disconnect_button = 2131427418;
+			public const int media_route_control_frame = 2131427418;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int media_route_list = 2131427414;
+			// aapt resource value: 0x7f0b005b
+			public const int media_route_disconnect_button = 2131427419;
 			
 			// aapt resource value: 0x7f0b0057
-			public const int media_route_volume_layout = 2131427415;
+			public const int media_route_list = 2131427415;
 			
 			// aapt resource value: 0x7f0b0058
-			public const int media_route_volume_slider = 2131427416;
+			public const int media_route_volume_layout = 2131427416;
+			
+			// aapt resource value: 0x7f0b0059
+			public const int media_route_volume_slider = 2131427417;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int middle = 2131427352;
@@ -1581,6 +1593,22 @@ namespace GibbitDroid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int CommitMenu = 2131492864;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}
