@@ -26,7 +26,6 @@ namespace GibbitDroid
         
         public User user;
         public Activity context;
-        public List<string> starredRepoList = new List<string>();
         public List<Repo> repos;
 
         public static Token token;
@@ -105,7 +104,10 @@ namespace GibbitDroid
 
             _searchView.QueryTextSubmit += async (sender, e) =>
             {
-                var url = "https://api.github.com/search/repositories?q=" + e.Query;
+                //TODO: Add pagination.
+                var url = "https://api.github.com/search/repositories?q=" +
+                            e.Query +
+                            "&sort=stars&order=desc&per_page=10";
                 var json = await _fetch.GetJson(url, token);
                 var searchedRepos = await ParseManager.Parse<Repos>(json);
                 repos = searchedRepos.Data;
