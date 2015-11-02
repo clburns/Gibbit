@@ -1,8 +1,8 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -12,7 +12,6 @@ using GibbitDroid.Activites;
 using GibbitDroid.Adapters;
 using GibbitDroid.Helpers;
 using System.Collections.Generic;
-using Android.Support.V4.View;
 
 namespace GibbitDroid
 {
@@ -20,6 +19,7 @@ namespace GibbitDroid
 	public class MainActivity : ActionBarActivity
 	{
         private readonly FetchManager _fetch;
+        private readonly UrlManager _url;
         private Android.Support.V7.Widget.SearchView _searchView;
         private ListView _listView;
         private RepoListAdapter _adapter;
@@ -34,6 +34,7 @@ namespace GibbitDroid
         public MainActivity()
         {
             _fetch = new FetchManager();
+            _url = new UrlManager();
         }
 
         protected override async void OnCreate(Bundle bundle)
@@ -52,8 +53,7 @@ namespace GibbitDroid
 
             signIn.Click += async (sender, e) =>
             {
-                var url = "https://api.github.com/user";
-                var json = await _fetch.GetJson(url, token);
+                var json = await _fetch.GetJson(_url.User, token);
                 user = await ParseManager.Parse<User>(json);
 
                 if (user != null)
@@ -68,10 +68,7 @@ namespace GibbitDroid
 
             getStarred.Click += async (sender, e) =>
             {
-                var url = user.Url +
-                          "/starred";
-
-                var json = await _fetch.GetJson(url, token);
+                var json = await _fetch.GetJson(_url.Starred(user), token);
                 repos = await ParseManager.Parse<List<Repo>>(json);
                 repos.ForEach(delegate(Repo starredRepo) 
                 {
@@ -100,15 +97,10 @@ namespace GibbitDroid
             var searchView = MenuItemCompat.GetActionView(item);
             _searchView = searchView.JavaCast<Android.Support.V7.Widget.SearchView>();
 
-            
-
             _searchView.QueryTextSubmit += async (sender, e) =>
             {
                 //TODO: Add pagination.
-                var url = "https://api.github.com/search/repositories?q=" +
-                            e.Query +
-                            "&sort=stars&order=desc&per_page=10";
-                var json = await _fetch.GetJson(url, token);
+                var json = await _fetch.GetJson(_url.Search(e.Query), token);
                 var searchedRepos = await ParseManager.Parse<Repos>(json);
                 repos = searchedRepos.Data;
   

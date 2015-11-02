@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Managers\FetchManager.cs" />
+    <Compile Include="Managers\UrlManager.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\Commit.cs" />
     <Compile Include="Models\CommitCommitter.cs" />

@@ -24,7 +24,8 @@ namespace GibbitDroid.Adapters
         private User user;
         private List<Repo> repos;
         private Activity context;
-        private FetchManager _fetch;
+        private readonly FetchManager _fetch;
+        private readonly UrlManager _url;
 
         public RepoListAdapter(Activity context, Token token, User user, List<Repo> repos) : base()
         {
@@ -34,6 +35,7 @@ namespace GibbitDroid.Adapters
             this.repos = repos;
 
             _fetch = new FetchManager();
+            _url = new UrlManager();
         }
 
         public override long GetItemId(int position)
@@ -87,21 +89,13 @@ namespace GibbitDroid.Adapters
 
         private async void Unstar(object sender, EventArgs e, Repo repo)
         {
-            var url = "https://api.github.com/user/starred/" +
-                        repo.Owner.Name +
-                        "/" +
-                        repo.Name;
-            await _fetch.DeleteJson(url, token);
+            await _fetch.DeleteJson(_url.Star(repo), token);
             Toast.MakeText(context, string.Format("Unstar the {0} repository", repo.Name), ToastLength.Short).Show();
         }
 
         private async void Star(object sender, EventArgs e, Repo repo)
         {
-            var url = "https://api.github.com/user/starred/" +
-                        repo.Owner.Name +
-                        "/" +
-                        repo.Name;
-            await _fetch.PutJson(url, token, null);
+            await _fetch.PutJson(_url.Star(repo), token, null);
             Toast.MakeText(context, string.Format("Starred the {0} repository", repo.Name), ToastLength.Short).Show();
         }
     }
