@@ -7,12 +7,13 @@ using System.Collections.Generic;
 using GibbitDroid.Adapters;
 using Android.Views;
 using Android.Support.V4.Widget;
+using Android.Support.V7.App;
 using Android.Text;
 using CommonMark;
 
 namespace GibbitDroid.Activites
 {
-    [Activity(Label = "Gibbit")]
+    [Activity(Label = "Gibbit", Theme = "@style/Theme.AppCompat")]
     public class RepoActivity : MainActivity
     {
         private readonly FetchManager _fetch;

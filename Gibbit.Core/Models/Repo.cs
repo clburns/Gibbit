@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace Gibbit.Core.Models
 {
+
+    public class Repos
+    {
+        [JsonProperty("items")]
+        public List<Repo> Data { get; set; }
+    }
+
     public class Repo
     {
         [JsonProperty("id")]
