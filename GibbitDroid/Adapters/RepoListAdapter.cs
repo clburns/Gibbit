@@ -16,9 +16,9 @@ using System.Threading.Tasks;
 
 namespace GibbitDroid.Adapters
 {
-    [Activity(Label = "Starred Repos")]
+    [Activity(Label = "Repos")]
 
-    public class StarredRepoListAdapter : BaseAdapter<Repo>
+    public class RepoListAdapter : BaseAdapter<Repo>
     {
         private Token token;
         private User user;
@@ -26,7 +26,7 @@ namespace GibbitDroid.Adapters
         private Activity context;
         private FetchManager _fetch;
 
-        public StarredRepoListAdapter(Activity context, Token token, User user, List<Repo> repos) : base()
+        public RepoListAdapter(Activity context, Token token, User user, List<Repo> repos) : base()
         {
             this.context = context;
             this.user = user;
@@ -57,13 +57,27 @@ namespace GibbitDroid.Adapters
             View view = convertView;
             if (view == null)
             {
-                view = context.LayoutInflater.Inflate(Resource.Layout.StarredRepoList, null);
-                view.FindViewById<ImageView>(Resource.Id.StarButton).Click += (sender, e) =>
+                view = context.LayoutInflater.Inflate(Resource.Layout.RepoList, null);
+                var starButton = view.FindViewById<ImageView>(Resource.Id.StarButton);
+                if (repo.IsStarred == true)
                 {
-                    StarClick(sender, e, repo);
-                    repos.RemoveAt(position);
-                    this.NotifyDataSetChanged();
+                    starButton.SetImageResource(Resource.Drawable.ic_star_white_24dp);
+                    starButton.Click += (sender, e) =>
+                    {
+                        Unstar(sender, e, repo);
+                        repos.RemoveAt(position);
+                        NotifyDataSetChanged();
+                    };
+                }
+                else if (repo.IsStarred == false)
+                {
+                    starButton.Click += (sender, e) =>
+                    {
+                        Star(sender, e, repo);
+                        starButton.SetImageResource(Resource.Drawable.ic_star_white_24dp);
+                    };
                 };
+
             }
             view.FindViewById<TextView>(Resource.Id.Line1).Text = string.Format("{0} - {1}", repo.Owner.Name, repo.Name);
             view.FindViewById<TextView>(Resource.Id.Line2).Text = string.Format("Last Updated: {0}", repo.Updated.ToLocalTime());
@@ -71,14 +85,24 @@ namespace GibbitDroid.Adapters
             return view;
         }
 
-        private async void StarClick(object sender, EventArgs e, Repo repo)
+        private async void Unstar(object sender, EventArgs e, Repo repo)
         {
             var url = "https://api.github.com/user/starred/" +
-                        user.UserName +
+                        repo.Owner.Name +
                         "/" +
                         repo.Name;
             await _fetch.DeleteJson(url, token);
             Toast.MakeText(context, string.Format("Unstar the {0} repository", repo.Name), ToastLength.Short).Show();
+        }
+
+        private async void Star(object sender, EventArgs e, Repo repo)
+        {
+            var url = "https://api.github.com/user/starred/" +
+                        repo.Owner.Name +
+                        "/" +
+                        repo.Name;
+            await _fetch.PutJson(url, token, null);
+            Toast.MakeText(context, string.Format("Starred the {0} repository", repo.Name), ToastLength.Short).Show();
         }
     }
 }

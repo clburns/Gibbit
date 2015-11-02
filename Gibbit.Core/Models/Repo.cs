@@ -30,5 +30,7 @@ namespace Gibbit.Core.Models
 
         [JsonProperty("owner")]
         public Owner Owner { get; set; }
+
+        public bool IsStarred { get; set; }
     }
 }

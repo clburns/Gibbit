@@ -1585,7 +1585,7 @@ namespace GibbitDroid
 			public const int Repo = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int StarredRepoList = 2130903070;
+			public const int RepoList = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
 			public const int support_simple_spinner_dropdown_item = 2130903071;

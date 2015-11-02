@@ -22,7 +22,7 @@ namespace GibbitDroid
         private readonly FetchManager _fetch;
         private Android.Support.V7.Widget.SearchView _searchView;
         private ListView _listView;
-        private StarredRepoListAdapter _adapter;
+        private RepoListAdapter _adapter;
         
         public User user;
         public Activity context;
@@ -63,7 +63,7 @@ namespace GibbitDroid
                     var bitmap = GetImageHelper.GetImageBitmapFromUrl(string.Format("{0}", user.avatarUrl));
                     userAvatar.SetImageBitmap(bitmap);
                     getStarred.Enabled = true;
-                    signIn.Visibility = Android.Views.ViewStates.Gone;
+                    signIn.Visibility = ViewStates.Gone;
                 }
             };
 
@@ -74,8 +74,12 @@ namespace GibbitDroid
 
                 var json = await _fetch.GetJson(url, token);
                 repos = await ParseManager.Parse<List<Repo>>(json);
+                repos.ForEach(delegate(Repo starredRepo) 
+                {
+                    starredRepo.IsStarred = true;
+                });
 
-                _adapter = new StarredRepoListAdapter(this, token, user, repos);
+                _adapter = new RepoListAdapter(this, token, user, repos);
                 _listView.Adapter = _adapter;
             };
 
@@ -107,10 +111,9 @@ namespace GibbitDroid
                 repos = searchedRepos.Data;
   
 
-                _adapter = new StarredRepoListAdapter(this, token, user, repos);
+                _adapter = new RepoListAdapter(this, token, user, repos);
                 _listView.Adapter = _adapter;
 
-                Toast.MakeText(this, "Searched for: " + e.Query, ToastLength.Short).Show();
                 e.Handled = true;
             };
 

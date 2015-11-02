@@ -38,7 +38,7 @@
         android:paddingTop="10dp"
         android:paddingRight="3dp"
         android:id="@+id/StarButton"
-        android:src="@drawable/ic_star_white_24dp"
+        android:src="@drawable/ic_star_border_white_24dp"
         android:clickable="true"
         android:layout_alignParentRight="true" />
 </RelativeLayout>

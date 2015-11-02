@@ -37,5 +37,20 @@ namespace Gibbit.Core.Managers
                 return res;
             }
         }
+
+        public async Task<string> PutJson(string url, Token token, HttpContent content)
+        {
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Add("Accept", "application/json");
+            client.DefaultRequestHeaders.Add("User-Agent", string.Format("{0}", token.TokenDescription));
+            client.DefaultRequestHeaders.Add("Authorization", string.Format("Token {0}", token.AccessToken));
+
+            using (HttpResponseMessage response = await client.PutAsync(new Uri(url), content))
+            {
+                string res = await response.Content.ReadAsStringAsync();
+                return res;
+            }
+        }
     }
 }
