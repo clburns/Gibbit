@@ -1,18 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Gibbit.Core.Managers;
 using Gibbit.Core.Models;
 using GibbitDroid.Helpers;
-using Gibbit.Core.Managers;
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace GibbitDroid.Adapters
 {

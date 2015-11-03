@@ -13,7 +13,6 @@ using GibbitDroid.Adapters;
 using GibbitDroid.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace GibbitDroid
 {
@@ -24,10 +23,12 @@ namespace GibbitDroid
         private readonly UrlManager _url;
         private Android.Support.V7.Widget.SearchView _searchView;
         private ListView _listView;
+        private RepoListAdapter _adapter;
         private int page;
         private int totalPages;
         private string query;
 
+        private TextView pageInfo;
         private Button previousPage;
         private Button nextPage;
         private LinearLayout navigation;
@@ -55,6 +56,8 @@ namespace GibbitDroid
             ImageView userAvatar = FindViewById<ImageView>(Resource.Id.UserAvatar);
             Button getStarred = FindViewById<Button>(Resource.Id.GetStarred);
             TextView greeting = FindViewById<TextView>(Resource.Id.Greeting);
+
+            pageInfo = FindViewById<TextView>(Resource.Id.PageInfo);
             navigation = FindViewById<LinearLayout>(Resource.Id.Navigation);
             previousPage = FindViewById<Button>(Resource.Id.PreviousPage);
             nextPage = FindViewById<Button>(Resource.Id.NextPage);
@@ -89,7 +92,8 @@ namespace GibbitDroid
 
                 navigation.Visibility = ViewStates.Gone;
 
-                _listView.Adapter = new RepoListAdapter(this, token, user, repos);
+                _adapter = new RepoListAdapter(this, token, user, repos);
+                _listView.Adapter = _adapter;
             };
 
             _listView.ItemClick += (sender, e) =>
@@ -124,6 +128,9 @@ namespace GibbitDroid
 
             _searchView.QueryTextSubmit += (sender, e) =>
             {
+                var intent = new Intent(this, typeof(RepoActivity));
+                StartActivity(intent);
+
                 page = 1;
 
                 query = e.Query;
@@ -138,11 +145,10 @@ namespace GibbitDroid
 
         public async void Search()
         {
-            TextView pageInfo = FindViewById<TextView>(Resource.Id.PageInfo);
-            
             var json = await _fetch.GetJson(_url.Search(query, page), token);
             var searchedRepos = await ParseManager.Parse<Repos>(json);
             totalPages = (int)Math.Ceiling(searchedRepos.Total / 10);
+            repos = searchedRepos.Data;
 
             if (page > 1)
             {
@@ -154,13 +160,11 @@ namespace GibbitDroid
                 nextPage.Enabled = true;
             }
 
+            pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
             navigation.Visibility = ViewStates.Visible;
 
-            pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
-
-            repos = searchedRepos.Data;
-
-            _listView.Adapter = new RepoListAdapter(this, token, user, repos);
+            _adapter = new RepoListAdapter(this, token, user, repos); ;
+            _listView.Adapter = _adapter;
         }
     }
 }
