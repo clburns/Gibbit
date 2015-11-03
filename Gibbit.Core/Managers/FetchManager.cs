@@ -8,11 +8,19 @@ namespace Gibbit.Core.Managers
 {
     public class FetchManager
     {
-        public async Task<string> GetJson(string url, Token token)
+        public async Task<string> GetJson(string url, Token token, bool isReadme = false)
         {
-             HttpClient client = new HttpClient();
+            HttpClient client = new HttpClient();
 
-            client.DefaultRequestHeaders.Add("Accept", "application/json");
+            if (isReadme == true)
+            {
+                client.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3.html");
+            }
+            else
+            {
+                client.DefaultRequestHeaders.Add("Accept", "application/json");
+            }
+            
             client.DefaultRequestHeaders.Add("User-Agent", string.Format("{0}", token.TokenDescription));
             client.DefaultRequestHeaders.Add("Authorization", string.Format("Token {0}", token.AccessToken));
 

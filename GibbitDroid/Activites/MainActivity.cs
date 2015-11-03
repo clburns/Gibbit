@@ -33,9 +33,9 @@ namespace GibbitDroid
         private Button nextPage;
         private LinearLayout navigation;
 
-        public User user;
-        public Activity context;
-        public List<Repo> repos;
+        private User user;
+        private Activity context;
+        private List<Repo> repos;
 
         public static Token token;
         public static Repo repo;
@@ -128,9 +128,6 @@ namespace GibbitDroid
 
             _searchView.QueryTextSubmit += (sender, e) =>
             {
-                var intent = new Intent(this, typeof(RepoActivity));
-                StartActivity(intent);
-
                 page = 1;
 
                 query = e.Query;
@@ -158,10 +155,10 @@ namespace GibbitDroid
             if (totalPages > 1)
             {
                 nextPage.Enabled = true;
+                navigation.Visibility = ViewStates.Visible;
             }
 
             pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
-            navigation.Visibility = ViewStates.Visible;
 
             _adapter = new RepoListAdapter(this, token, user, repos); ;
             _listView.Adapter = _adapter;
