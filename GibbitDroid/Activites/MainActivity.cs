@@ -119,6 +119,7 @@ namespace GibbitDroid
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
+            //TODO: look at switching to Support v7 Toolbar
             MenuInflater.Inflate(Resource.Menu.RepoSearch, menu);
 
             var item = menu.FindItem(Resource.Id.action_search);

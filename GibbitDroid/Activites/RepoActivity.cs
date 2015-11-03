@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace GibbitDroid.Activites
 {
     [Activity(Label = "Gibbit", Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat")]
-    public class RepoActivity : ActionBarActivity
+    public class RepoActivity : Activity
     {
         private readonly UrlManager _url;
         private readonly FetchManager _fetch;
@@ -47,5 +47,7 @@ namespace GibbitDroid.Activites
             commitList.Adapter = new CommitListAdapter(this, commits);
 
         }
+
+        //TODO: use either support v7 to do a toolbar menu with actions or a regular one for repo view
     }
 }
