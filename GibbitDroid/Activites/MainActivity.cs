@@ -11,7 +11,9 @@ using Gibbit.Core.Models;
 using GibbitDroid.Activites;
 using GibbitDroid.Adapters;
 using GibbitDroid.Helpers;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GibbitDroid
 {
@@ -22,8 +24,14 @@ namespace GibbitDroid
         private readonly UrlManager _url;
         private Android.Support.V7.Widget.SearchView _searchView;
         private ListView _listView;
-        private RepoListAdapter _adapter;
-        
+        private int page;
+        private int totalPages;
+        private string query;
+
+        private Button previousPage;
+        private Button nextPage;
+        private LinearLayout navigation;
+
         public User user;
         public Activity context;
         public List<Repo> repos;
@@ -47,7 +55,11 @@ namespace GibbitDroid
             ImageView userAvatar = FindViewById<ImageView>(Resource.Id.UserAvatar);
             Button getStarred = FindViewById<Button>(Resource.Id.GetStarred);
             TextView greeting = FindViewById<TextView>(Resource.Id.Greeting);
-            _listView = FindViewById<ListView>(Resource.Id.StarredRepoList);
+            navigation = FindViewById<LinearLayout>(Resource.Id.Navigation);
+            previousPage = FindViewById<Button>(Resource.Id.PreviousPage);
+            nextPage = FindViewById<Button>(Resource.Id.NextPage);
+
+            _listView = FindViewById<ListView>(Resource.Id.RepoList);
 
             token = await GetLocalStorage.GetLocalAccessToken(context);
 
@@ -75,8 +87,9 @@ namespace GibbitDroid
                     starredRepo.IsStarred = true;
                 });
 
-                _adapter = new RepoListAdapter(this, token, user, repos);
-                _listView.Adapter = _adapter;
+                navigation.Visibility = ViewStates.Gone;
+
+                _listView.Adapter = new RepoListAdapter(this, token, user, repos);
             };
 
             _listView.ItemClick += (sender, e) =>
@@ -86,7 +99,19 @@ namespace GibbitDroid
                 var intent = new Intent(this, typeof(RepoActivity));
                 StartActivity(intent);
             };
-		}
+
+            previousPage.Click += (sender1, e1) =>
+            {
+                page--;
+                Search();
+            };
+
+            nextPage.Click += (sender2, e2) =>
+            {
+                page++;
+                Search();
+            };
+        }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
@@ -97,21 +122,45 @@ namespace GibbitDroid
             var searchView = MenuItemCompat.GetActionView(item);
             _searchView = searchView.JavaCast<Android.Support.V7.Widget.SearchView>();
 
-            _searchView.QueryTextSubmit += async (sender, e) =>
+            _searchView.QueryTextSubmit += (sender, e) =>
             {
-                //TODO: Add pagination.
-                var json = await _fetch.GetJson(_url.Search(e.Query), token);
-                var searchedRepos = await ParseManager.Parse<Repos>(json);
-                repos = searchedRepos.Data;
-  
+                page = 1;
 
-                _adapter = new RepoListAdapter(this, token, user, repos);
-                _listView.Adapter = _adapter;
+                query = e.Query;
+
+                Search();
 
                 e.Handled = true;
             };
 
             return true;
+        }
+
+        public async void Search()
+        {
+            TextView pageInfo = FindViewById<TextView>(Resource.Id.PageInfo);
+            
+            var json = await _fetch.GetJson(_url.Search(query, page), token);
+            var searchedRepos = await ParseManager.Parse<Repos>(json);
+            totalPages = (int)Math.Ceiling(searchedRepos.Total / 10);
+
+            if (page > 1)
+            {
+                previousPage.Enabled = true;
+            }
+
+            if (totalPages > 1)
+            {
+                nextPage.Enabled = true;
+            }
+
+            navigation.Visibility = ViewStates.Visible;
+
+            pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
+
+            repos = searchedRepos.Data;
+
+            _listView.Adapter = new RepoListAdapter(this, token, user, repos);
         }
     }
 }

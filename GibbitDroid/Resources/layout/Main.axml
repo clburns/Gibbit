@@ -39,8 +39,37 @@
         android:id="@+id/GetStarred"
         android:enabled="false" />
     <ListView
-        android:id="@+id/StarredRepoList"
+        android:id="@+id/RepoList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:dividerHeight="1.0dp" />
+    <LinearLayout
+        android:id="@+id/Navigation"
+        android:visibility="gone"
+        android:layout_gravity="bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/PreviousPage"
+            android:text="Previous"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:enabled="false" />
+        <TextView
+            android:id="@+id/PageInfo"
+            android:text="Page Info"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:textSize="20dip"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/NextPage"
+            android:text="Next"
+            android:layout_width="128dp"
+            android:layout_height="wrap_content"
+            android:enabled="false" />
+    </LinearLayout>
 </LinearLayout>

@@ -16,13 +16,15 @@ namespace Gibbit.Core.Managers
             return user.Url + "/starred";
         }
 
-        public string Search(string query)
+        public string Search(string query, int page)
         {
             var searchSettings = "&sort=stars&order=desc&per_page=10";
+            var pageNumer = "&page=" + page;
 
             return "https://api.github.com/search/repositories?q=" + 
                     query + 
-                    searchSettings;
+                    searchSettings +
+                    pageNumer;
         }
 
         public string Readme(Repo repo)

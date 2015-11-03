@@ -10,6 +10,9 @@ namespace Gibbit.Core.Models
 
     public class Repos
     {
+        [JsonProperty("total_count")]
+        public double Total { get; set; }
+
         [JsonProperty("items")]
         public List<Repo> Data { get; set; }
     }
