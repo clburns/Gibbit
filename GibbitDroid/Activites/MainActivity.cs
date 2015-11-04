@@ -23,6 +23,7 @@ namespace GibbitDroid
         private readonly UrlManager _url;
         private Android.Support.V7.Widget.SearchView _searchView;
         private ListView _listView;
+        private SwipeRefreshLayout _swipe;
         private RepoListAdapter _adapter;
         private int page;
         private int totalPages;
@@ -63,6 +64,7 @@ namespace GibbitDroid
             nextPage = FindViewById<Button>(Resource.Id.NextPage);
 
             _listView = FindViewById<ListView>(Resource.Id.RepoList);
+            _swipe = FindViewById<SwipeRefreshLayout>(Resource.Id.RepoListSwipe);
 
             token = await GetLocalStorage.GetLocalAccessToken(context);
 
@@ -83,6 +85,7 @@ namespace GibbitDroid
 
             getStarred.Click += async (sender, e) =>
             {
+                //TODO: put this into a reuseable method.
                 var json = await _fetch.GetJson(_url.Starred(user), token);
                 repos = await ParseManager.Parse<List<Repo>>(json);
                 repos.ForEach(delegate(Repo starredRepo) 
@@ -95,6 +98,19 @@ namespace GibbitDroid
                 _adapter = new RepoListAdapter(this, token, user, repos);
                 _listView.Adapter = _adapter;
             };
+
+            _swipe.Refresh += (sender, e) =>
+            {
+                RepoListSwipe.Refreshing = false;
+                Toast.MakeText(context, "Refresh the repo list", ToastLength.Short).Show();
+            };
+
+            _swipe.SetColorSchem(
+                Android.Resource.Color.HoloBlueBright,
+                Android.Resource.Color.HoloGreenLight,
+                Android.Resource.Color.HoloOrangeLight,
+                Android.Resource.Color.HoloRedLight
+            );
 
             _listView.ItemClick += (sender, e) =>
             {
