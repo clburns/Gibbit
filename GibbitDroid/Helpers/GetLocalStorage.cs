@@ -18,7 +18,7 @@ namespace GibbitDroid.Helpers
 {
     public class GetLocalStorage
     {
-        public static async Task<Token> GetLocalAccessToken(Activity context)
+        public static async Task<Token> GetLocalAccessToken()
         {
             StreamReader strm = new StreamReader(Application.Context.Assets.Open("LocalStorage.txt"));
             var json = await strm.ReadToEndAsync();

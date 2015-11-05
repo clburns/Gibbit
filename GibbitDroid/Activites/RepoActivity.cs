@@ -24,6 +24,7 @@ namespace GibbitDroid.Activites
             _fetch = new FetchManager();
             _url = new UrlManager();
         }
+
         protected override async void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -48,7 +49,7 @@ namespace GibbitDroid.Activites
             swipe.Refresh += async (sender, e) =>
             {
                 await GetCommits();
-swipe.Refreshing = false;
+                swipe.Refreshing = false;
             };
         }
 

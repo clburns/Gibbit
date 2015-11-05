@@ -21,10 +21,8 @@ namespace GibbitDroid
 	{
         private readonly FetchManager _fetch;
         private readonly UrlManager _url;
-        private Android.Support.V7.Widget.SearchView _searchView;
-        private ListView _listView;
+        private ListView listView;
         
-        private RepoListAdapter _adapter;
         private int page;
         private int totalPages;
         private string query;
@@ -35,7 +33,6 @@ namespace GibbitDroid
         private LinearLayout navigation;
 
         private User user;
-        private Activity context;
         private List<Repo> repos;
 
         public static Token token;
@@ -63,9 +60,9 @@ namespace GibbitDroid
             previousPage = FindViewById<Button>(Resource.Id.PreviousPage);
             nextPage = FindViewById<Button>(Resource.Id.NextPage);
 
-            _listView = FindViewById<ListView>(Resource.Id.RepoList);
+            listView = FindViewById<ListView>(Resource.Id.RepoList);
 
-            token = await GetLocalStorage.GetLocalAccessToken(context);
+            token = await GetLocalStorage.GetLocalAccessToken();
 
             signIn.Click += async (sender, e) =>
             {
@@ -75,7 +72,7 @@ namespace GibbitDroid
                 if (user != null)
                 {
                     greeting.Text = string.Format("Welcome {0}", user.UserName);
-                    var bitmap = GetImageHelper.GetImageBitmapFromUrl(string.Format("{0}", user.avatarUrl));
+                    var bitmap = GetImageHelper.GetImageBitmapFromUrl(user.avatarUrl);
                     userAvatar.SetImageBitmap(bitmap);
                     getStarred.Enabled = true;
                     signIn.Visibility = ViewStates.Gone;
@@ -93,11 +90,10 @@ namespace GibbitDroid
 
                 navigation.Visibility = ViewStates.Gone;
 
-                _adapter = new RepoListAdapter(this, token, user, repos);
-                _listView.Adapter = _adapter;
+                listView.Adapter = new RepoListAdapter(this, token, user, repos);
             };
 
-            _listView.ItemClick += (sender, e) =>
+            listView.ItemClick += (sender, e) =>
             {
                 var listView = sender as ListView;
                 repo = repos[e.Position];
@@ -125,10 +121,10 @@ namespace GibbitDroid
 
             var item = menu.FindItem(Resource.Id.action_search);
 
-            var searchView = MenuItemCompat.GetActionView(item);
-            _searchView = searchView.JavaCast<Android.Support.V7.Widget.SearchView>();
+            var menuItem = MenuItemCompat.GetActionView(item);
+            var searchView = menuItem.JavaCast<Android.Support.V7.Widget.SearchView>();
 
-            _searchView.QueryTextSubmit += (sender, e) =>
+            searchView.QueryTextSubmit += (sender, e) =>
             {
                 page = 1;
 
@@ -171,8 +167,7 @@ namespace GibbitDroid
             
             pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
 
-            _adapter = new RepoListAdapter(this, token, user, repos); ;
-            _listView.Adapter = _adapter;
+            listView.Adapter = new RepoListAdapter(this, token, user, repos);
         }
     }
 }

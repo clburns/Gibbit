@@ -76,7 +76,7 @@ namespace GibbitDroid.Adapters
             }
             view.FindViewById<TextView>(Resource.Id.Line1).Text = string.Format("{0} - {1}", repo.Owner.Name, repo.Name);
             view.FindViewById<TextView>(Resource.Id.Line2).Text = string.Format("Last Updated: {0}", repo.Updated.ToLocalTime());
-            view.FindViewById<ImageView>(Resource.Id.OwnerAvatar).SetImageBitmap(GetImageHelper.GetImageBitmapFromUrl(string.Format("{0}", repo.Owner.AvatarUrl)));
+            view.FindViewById<ImageView>(Resource.Id.OwnerAvatar).SetImageBitmap(GetImageHelper.GetImageBitmapFromUrl(repo.Owner.AvatarUrl));
             return view;
         }
 
