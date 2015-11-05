@@ -38,17 +38,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/GetStarred"
         android:enabled="false" />
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/RepoListSwipe"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <ListView
-            android:id="@+id/RepoList"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:dividerHeight="1.0dp" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    <ListView
+        android:id="@+id/RepoList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:dividerHeight="1.0dp" />
     <LinearLayout
         android:id="@+id/Navigation"
         android:visibility="gone"

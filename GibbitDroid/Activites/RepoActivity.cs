@@ -1,12 +1,13 @@
 using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
+using Android.Support.V4.Widget;
 using Android.Text;
 using Android.Widget;
 using Gibbit.Core.Managers;
 using Gibbit.Core.Models;
 using GibbitDroid.Adapters;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace GibbitDroid.Activites
 {
@@ -15,7 +16,8 @@ namespace GibbitDroid.Activites
     {
         private readonly UrlManager _url;
         private readonly FetchManager _fetch;
-        public List<CommitRepo> commits;
+        private ListView commitList;
+        private List<CommitRepo> commits;
 
         public RepoActivity()
         {
@@ -30,7 +32,8 @@ namespace GibbitDroid.Activites
 
             TextView repoName = FindViewById<TextView>(Resource.Id.RepoName);
             TextView readMeView = FindViewById<TextView>(Resource.Id.Readme);
-            ListView commitList = FindViewById<ListView>(Resource.Id.CommitList);
+            SwipeRefreshLayout swipe = FindViewById<SwipeRefreshLayout>(Resource.Id.RepoListSwipe);
+            commitList = FindViewById<ListView>(Resource.Id.CommitList);
 
             repoName.Text = string.Format("{0} - {1}", MainActivity.repo.Owner.Name, MainActivity.repo.Name);
 
@@ -40,14 +43,25 @@ namespace GibbitDroid.Activites
             var readme = await _fetch.GetJson(_url.Readme(MainActivity.repo), MainActivity.token, true);
             readMeView.TextFormatted = Html.FromHtml(readme);
 
-            //Gets the commits and binds to the ListView
-            var commitsJson = await _fetch.GetJson(_url.Commits(MainActivity.repo), MainActivity.token);
-            commits = await ParseManager.Parse<List<CommitRepo>>(commitsJson);
+            await GetCommits();
 
-            commitList.Adapter = new CommitListAdapter(this, commits);
-
+            swipe.Refresh += async (sender, e) =>
+            {
+                await GetCommits();
+swipe.Refreshing = false;
+            };
         }
 
+        /// <summary>
+        /// Gets the commits and binds to the ListView
+        /// </summary>
+        private async Task GetCommits()
+        {
+            var commitsJson = await _fetch.GetJson(_url.Commits(MainActivity.repo), MainActivity.token);
+            commits = await ParseManager.Parse<List<CommitRepo>>(commitsJson);
+            commitList.Adapter = new CommitListAdapter(this, commits);
+        }
+        
         //TODO: use either support v7 to do a toolbar menu with actions or a regular one for repo view
     }
 }

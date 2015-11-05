@@ -1186,32 +1186,32 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b0050
 			public const int Message = 2131427408;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int Navigation = 2131427416;
+			// aapt resource value: 0x7f0b0057
+			public const int Navigation = 2131427415;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int NextPage = 2131427419;
+			// aapt resource value: 0x7f0b005a
+			public const int NextPage = 2131427418;
 			
 			// aapt resource value: 0x7f0b0064
 			public const int OwnerAvatar = 2131427428;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int PageInfo = 2131427418;
-			
 			// aapt resource value: 0x7f0b0059
-			public const int PreviousPage = 2131427417;
+			public const int PageInfo = 2131427417;
 			
-			// aapt resource value: 0x7f0b0062
-			public const int Readme = 2131427426;
-			
-			// aapt resource value: 0x7f0b0057
-			public const int RepoList = 2131427415;
-			
-			// aapt resource value: 0x7f0b0056
-			public const int RepoListSwipe = 2131427414;
+			// aapt resource value: 0x7f0b0058
+			public const int PreviousPage = 2131427416;
 			
 			// aapt resource value: 0x7f0b0061
-			public const int RepoName = 2131427425;
+			public const int Readme = 2131427425;
+			
+			// aapt resource value: 0x7f0b0056
+			public const int RepoList = 2131427414;
+			
+			// aapt resource value: 0x7f0b0062
+			public const int RepoListSwipe = 2131427426;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int RepoName = 2131427424;
 			
 			// aapt resource value: 0x7f0b0054
 			public const int SignIn = 2131427412;
@@ -1351,20 +1351,20 @@ namespace GibbitDroid
 			// aapt resource value: 0x7f0b0024
 			public const int match_parent = 2131427364;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int media_route_control_frame = 2131427423;
+			// aapt resource value: 0x7f0b005e
+			public const int media_route_control_frame = 2131427422;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int media_route_disconnect_button = 2131427424;
+			// aapt resource value: 0x7f0b005f
+			public const int media_route_disconnect_button = 2131427423;
+			
+			// aapt resource value: 0x7f0b005b
+			public const int media_route_list = 2131427419;
 			
 			// aapt resource value: 0x7f0b005c
-			public const int media_route_list = 2131427420;
+			public const int media_route_volume_layout = 2131427420;
 			
 			// aapt resource value: 0x7f0b005d
-			public const int media_route_volume_layout = 2131427421;
-			
-			// aapt resource value: 0x7f0b005e
-			public const int media_route_volume_slider = 2131427422;
+			public const int media_route_volume_slider = 2131427421;
 			
 			// aapt resource value: 0x7f0b0018
 			public const int middle = 2131427352;

@@ -3,7 +3,6 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.View;
-using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -24,7 +23,7 @@ namespace GibbitDroid
         private readonly UrlManager _url;
         private Android.Support.V7.Widget.SearchView _searchView;
         private ListView _listView;
-        private SwipeRefreshLayout _swipe;
+        
         private RepoListAdapter _adapter;
         private int page;
         private int totalPages;
@@ -65,7 +64,6 @@ namespace GibbitDroid
             nextPage = FindViewById<Button>(Resource.Id.NextPage);
 
             _listView = FindViewById<ListView>(Resource.Id.RepoList);
-            _swipe = FindViewById<SwipeRefreshLayout>(Resource.Id.RepoListSwipe);
 
             token = await GetLocalStorage.GetLocalAccessToken(context);
 
@@ -86,38 +84,17 @@ namespace GibbitDroid
 
             getStarred.Click += async (sender, e) =>
             {
-                //TODO: put this into a reuseable method for _swipe.Refresh
-
                 var json = await _fetch.GetJson(_url.Starred(user), token);
                 repos = await ParseManager.Parse<List<Repo>>(json);
-                repos.ForEach(delegate(Repo starredRepo) 
+                foreach(Repo repo in repos) 
                 {
-                    starredRepo.IsStarred = true;
-                });
+                    repo.IsStarred = true;
+                };
 
                 navigation.Visibility = ViewStates.Gone;
 
                 _adapter = new RepoListAdapter(this, token, user, repos);
                 _listView.Adapter = _adapter;
-            };
-
-            _swipe.Refresh += async (sender, e) =>
-            {
-                //TODO: Make is so that refreshing on a search result doesn't bring you back to starred list
-
-                var json = await _fetch.GetJson(_url.Starred(user), token);
-                repos = await ParseManager.Parse<List<Repo>>(json);
-                repos.ForEach(delegate (Repo starredRepo)
-                {
-                    starredRepo.IsStarred = true;
-                });
-
-                navigation.Visibility = ViewStates.Gone;
-
-                _adapter = new RepoListAdapter(this, token, user, repos);
-                _listView.Adapter = _adapter;
-                _swipe.Refreshing = false;
-                Console.WriteLine("Refreshing");
             };
 
             _listView.ItemClick += (sender, e) =>
@@ -172,17 +149,26 @@ namespace GibbitDroid
             totalPages = (int)Math.Ceiling(searchedRepos.Total / 10);
             repos = searchedRepos.Data;
 
-            if (page > 1)
+            if (page == 1)
+            {
+                previousPage.Enabled = false;
+            }
+            else
             {
                 previousPage.Enabled = true;
             }
 
-            if (totalPages > 1)
+            if (totalPages == 1)
+            {
+                nextPage.Enabled = false;
+                navigation.Visibility = ViewStates.Gone;
+            }
+            else
             {
                 nextPage.Enabled = true;
                 navigation.Visibility = ViewStates.Visible;
             }
-
+            
             pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
 
             _adapter = new RepoListAdapter(this, token, user, repos); ;
