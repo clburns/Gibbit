@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.View;
+using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -85,7 +86,8 @@ namespace GibbitDroid
 
             getStarred.Click += async (sender, e) =>
             {
-                //TODO: put this into a reuseable method.
+                //TODO: put this into a reuseable method for _swipe.Refresh
+
                 var json = await _fetch.GetJson(_url.Starred(user), token);
                 repos = await ParseManager.Parse<List<Repo>>(json);
                 repos.ForEach(delegate(Repo starredRepo) 
@@ -99,18 +101,24 @@ namespace GibbitDroid
                 _listView.Adapter = _adapter;
             };
 
-            _swipe.Refresh += (sender, e) =>
+            _swipe.Refresh += async (sender, e) =>
             {
-                RepoListSwipe.Refreshing = false;
-                Toast.MakeText(context, "Refresh the repo list", ToastLength.Short).Show();
-            };
+                //TODO: Make is so that refreshing on a search result doesn't bring you back to starred list
 
-            _swipe.SetColorSchem(
-                Android.Resource.Color.HoloBlueBright,
-                Android.Resource.Color.HoloGreenLight,
-                Android.Resource.Color.HoloOrangeLight,
-                Android.Resource.Color.HoloRedLight
-            );
+                var json = await _fetch.GetJson(_url.Starred(user), token);
+                repos = await ParseManager.Parse<List<Repo>>(json);
+                repos.ForEach(delegate (Repo starredRepo)
+                {
+                    starredRepo.IsStarred = true;
+                });
+
+                navigation.Visibility = ViewStates.Gone;
+
+                _adapter = new RepoListAdapter(this, token, user, repos);
+                _listView.Adapter = _adapter;
+                _swipe.Refreshing = false;
+                Console.WriteLine("Refreshing");
+            };
 
             _listView.ItemClick += (sender, e) =>
             {
