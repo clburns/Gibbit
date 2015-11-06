@@ -56,8 +56,8 @@ namespace GibbitDroid.Adapters
                     menu.Show();
                 };
             }
-            view.FindViewById<TextView>(Resource.Id.Message).Text = string.Format("{0}", commit.Commit.Message);
-            view.FindViewById<TextView>(Resource.Id.Commiter).Text = string.Format("{0} commited on {1}", commit.Commit.Committer.Name, commit.Commit.Committer.Date.ToLocalTime());
+            view.FindViewById<TextView>(Resource.Id.Message).Text = commit.Commit.Message;
+            view.FindViewById<TextView>(Resource.Id.Commiter).Text = $"{commit.Commit.Committer.Name} committed on {commit.Commit.Committer.Date.ToLocalTime()}";
             return view;
         }
     }

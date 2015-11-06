@@ -1,5 +1,4 @@
 using Android.Graphics;
-using Gibbit.Core.Models;
 using System.Net;
 
 namespace GibbitDroid.Helpers

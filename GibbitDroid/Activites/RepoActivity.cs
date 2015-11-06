@@ -36,7 +36,7 @@ namespace GibbitDroid.Activites
             SwipeRefreshLayout swipe = FindViewById<SwipeRefreshLayout>(Resource.Id.RepoListSwipe);
             commitList = FindViewById<ListView>(Resource.Id.CommitList);
 
-            repoName.Text = string.Format("{0} - {1}", MainActivity.repo.Owner.Name, MainActivity.repo.Name);
+            repoName.Text = $"{MainActivity.repo.Owner.Name} - {MainActivity.repo.Name}";
 
             readMeView.MovementMethod = new Android.Text.Method.ScrollingMovementMethod();
 

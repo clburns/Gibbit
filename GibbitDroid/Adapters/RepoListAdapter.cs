@@ -74,8 +74,8 @@ namespace GibbitDroid.Adapters
                 };
 
             }
-            view.FindViewById<TextView>(Resource.Id.Line1).Text = string.Format("{0} - {1}", repo.Owner.Name, repo.Name);
-            view.FindViewById<TextView>(Resource.Id.Line2).Text = string.Format("Last Updated: {0}", repo.Updated.ToLocalTime());
+            view.FindViewById<TextView>(Resource.Id.Line1).Text = $"{repo.Owner.Name} - {repo.Name}";
+            view.FindViewById<TextView>(Resource.Id.Line2).Text = $"Last Updated: {repo.Updated.ToLocalTime()}";
             view.FindViewById<ImageView>(Resource.Id.OwnerAvatar).SetImageBitmap(GetImageHelper.GetImageBitmapFromUrl(repo.Owner.AvatarUrl));
             return view;
         }
@@ -83,13 +83,13 @@ namespace GibbitDroid.Adapters
         private async void Unstar(object sender, EventArgs e, Repo repo)
         {
             await _fetch.DeleteJson(_url.Star(repo), token);
-            Toast.MakeText(context, string.Format("Unstar the {0} repository", repo.Name), ToastLength.Short).Show();
+            Toast.MakeText(context, $"Unstarred the {repo.Name} repository", ToastLength.Short).Show();
         }
 
         private async void Star(object sender, EventArgs e, Repo repo)
         {
             await _fetch.PutJson(_url.Star(repo), token, null);
-            Toast.MakeText(context, string.Format("Starred the {0} repository", repo.Name), ToastLength.Short).Show();
+            Toast.MakeText(context, $"Starred the {repo.Name} repository", ToastLength.Short).Show();
         }
     }
 }

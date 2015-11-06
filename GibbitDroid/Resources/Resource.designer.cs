@@ -1622,7 +1622,10 @@ namespace GibbitDroid
 			public const int CommitMenu = 2131492864;
 			
 			// aapt resource value: 0x7f0c0001
-			public const int RepoSearch = 2131492865;
+			public const int repomenu = 2131492865;
+			
+			// aapt resource value: 0x7f0c0002
+			public const int RepoSearch = 2131492866;
 			
 			static Menu()
 			{

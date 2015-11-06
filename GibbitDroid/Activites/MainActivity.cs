@@ -71,7 +71,7 @@ namespace GibbitDroid
 
                 if (user != null)
                 {
-                    greeting.Text = string.Format("Welcome {0}", user.UserName);
+                    greeting.Text = $"Welcome {user.UserName}";
                     var bitmap = GetImageHelper.GetImageBitmapFromUrl(user.avatarUrl);
                     userAvatar.SetImageBitmap(bitmap);
                     getStarred.Enabled = true;
@@ -164,9 +164,9 @@ namespace GibbitDroid
                 nextPage.Enabled = true;
                 navigation.Visibility = ViewStates.Visible;
             }
-            
-            pageInfo.Text = string.Format("Page: {0} of {1}", page, totalPages);
 
+            pageInfo.Text = $"Page: {page} of {totalPages}";
+            
             listView.Adapter = new RepoListAdapter(this, token, user, repos);
         }
     }

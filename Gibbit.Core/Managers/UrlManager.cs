@@ -13,36 +13,29 @@ namespace Gibbit.Core.Managers
 
         public string Starred(User user)
         {
-            return user.Url + "/starred";
+            return $"{user.Url}/starred";
         }
 
         public string Search(string query, int page)
         {
             var searchSettings = "&sort=stars&order=desc&per_page=10";
-            var pageNumer = "&page=" + page;
 
-            return "https://api.github.com/search/repositories?q=" + 
-                    query + 
-                    searchSettings +
-                    pageNumer;
+            return $"https://api.github.com/search/repositories?q={query}{searchSettings}&page={page}";
         }
 
         public string Readme(Repo repo)
         {
-            return repo.Url + "/readme";
+            return $"{repo.Url}/readme";
         }
 
         public string Commits(Repo repo)
         {
-            return repo.Url + "/commits";
+            return $"{repo.Url}/commits";
         }
 
         public string Star(Repo repo)
         {
-            return "https://api.github.com/user/starred/" +
-                    repo.Owner.Name +
-                    "/" +
-                    repo.Name;
+            return $"https://api.github.com/user/starred/{repo.Owner.Name}/{repo.Name}";
         }
     }
 }
