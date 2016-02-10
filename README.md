@@ -1,5 +1,5 @@
 # Gibbit
-My first Xamarin project for Android to access GitHub's api.
+Xamarin project for Android to access GitHub's api.
 
 To setup: 
 
